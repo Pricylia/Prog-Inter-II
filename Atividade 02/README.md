@@ -1,9 +1,8 @@
 ## Atividade B - API Contracts/ Design API
-
+##### *Dupla: Pricylia e Kaylanne*
+---
 ### **JOGADORES**
 Gerenciamento e consulta de jogadores na plataforma.
-
----
 
 1. Listar jogadores
 - Endpoint: GET /api/jogadores
@@ -27,8 +26,10 @@ categoria: Filtra pela categoria do jogador.
   ```
 
 2. Criar jogador
-- Endpoint:POST api/jodador/criar
-
+- Endpoint:
+  ```
+  POST api/jodador/criar
+  ```
 - Descrição: Cria um novo jogador no sistema.
 
 - Parâmetros do Corpo (body):
@@ -46,7 +47,10 @@ categoria: Filtra pela categoria do jogador.
   ```
 
 3. Atualizar jogador
-- Endpoint: PUT /api/jogadores/{id}
+- Endpoint:
+  ```
+  PUT /api/jogadores/{id}
+  ```
   
 - Descrição: Atualiza os dados de um jogador existente.
 
@@ -66,7 +70,10 @@ categoria: Filtra pela categoria do jogador.
   ```
 
 4. Deletar jogador
-- Endpoint: DELETE /api/jogadores/{id}
+- Endpoint:
+  ```
+  DELETE /api/jogadores/{id}
+  ```
   
 - Descrição: Remove um jogador do sistema.
 
@@ -126,7 +133,7 @@ categoria: Filtra pela categoria do jogador.
   500 (falha inesperada no servidor)
   ```
 3. Atualizar Partida
-- Endpoint: PUT /api/partida/{id}/atualizar
+ - Endpoint: PUT /api/partida/{id}/atualizar
  
 - Descrição: Atualiza os dados de uma partida existente.
 
