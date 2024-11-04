@@ -1,23 +1,23 @@
-# Atividade B - Galera do Vôlei - API Contracts/ Design API
+## Atividade B - API Contracts/ Design API
 
 ### **JOGADORES**
-- Filtro de jogadores
-  ```
-  GET /api/jogadores?sexo=?&idade?&categoria=?
-  ```
+Gerenciamento e consulta de jogadores na plataforma.
+
+---
 
 1. Listar jogadores
-- Endpoint:
+- Endpoint: GET /api/jogadores
+
+- Descrição: Retorna uma lista de jogadores, com opção de filtro.
+
+- Parâmetros de Filtro (query):
+sexo: Filtra pelo sexo do jogador.
+idade: Filtra pela idade do jogador.
+categoria: Filtra pela categoria do jogador.
+
+- Resposta - Sucesso (200):
   ```
-  GET api/jogadores
-  ```
-- Parâmetros:
-  ```
-  { "username": "string", "idade": "number", "genero": string, "categoria": string}
-  ```
-- Resposta:
-  ```
-  { "message": string}
+  {"id": "int", "username": "string", "idade": "number", "genero": "string", "categoria": "string"}
   ```
 - Códigos de erro:
   ```
@@ -31,16 +31,15 @@
   ```
   POST api/jodador/criar
   ```
-  ```
-  GET api/jogadores
-  ```
-- Parâmetros:
+- Descrição: Cria um novo jogador no sistema.
+
+- Parâmetros do Corpo (body):
   ```
   { "username": "string", "idade": "number", "genero": string, "categoria": string}
   ```
-- Resposta:
+- Resposta - Sucesso (201):
   ```
-  { "message": string}
+  { "message": "Jogador criado com sucesso" }
   ```
 - Códigos de erro:
   ```
@@ -53,11 +52,14 @@
   ```
   PUT /api/jogadores/{id}
   ```
+  
+- Descrição: Atualiza os dados de um jogador existente.
+
 - Parâmetros:
   ```
   { "username": "string", "idade": "number", "genero": string, "categoria": string}
   ```
-- Resposta:
+- Resposta - do Corpo (body):
   ```
   { "message": string}
   ```
@@ -73,13 +75,12 @@
   ```
   DELETE /api/jogadores/{id}
   ```
-- Parâmetros:
-  ```
-  { "username": "string", "idade": "number", "genero": string, "categoria": string}
-  ```
+  
+- Descrição: Remove um jogador do sistema.
+
 - Resposta:
   ```
-  { "message": string}
+  { "message": "Jogador deletado com sucesso"}
   ```
 - Códigos de erro:
   ```
@@ -89,83 +90,79 @@
 ---
 
 ### **PARTIDAS**
-- Filtrar partida
+1. Listar Partidas
+- Endpoint: GET /api/partidas
+
+- Descrição: Retorna uma lista de partidas, com opção de filtro.
+
+- Parâmetros de Filtro (query):
   ```
-  GET /api/partidas?categoria=?&status=?&data=?
+  categoria: Filtra pela categoria da partida.
+  status: Filtra pelo status da partida.
+  data: Filtra pela data da partida.
   ```
-1. Listar partidas
- ```
-  GET /api/partidas
- ```
+
+- Respostas:
+  ```
+  { "id": "int", "tipo": "string", "categoria": "string", "local": "string", "data": "date", "hora": "string", "status": "string" }
+  ```
+
+- Erros:
+  ```
+  404 (jogador não encontrado)
+  204: Requisição bem-sucedida, mas sem partidas a serem exibidas.
+  500 (falha inesperada no servidor)
+  ```
+
 2. Criar Partida
-- Endpoint:
+- Endpoint: POST api/partida/criar
+
+- Descrição: Cria uma nova partida no sistema.
+
+- Parâmetros do Corpo (body):
   ```
-  POST api/partida/criar
+  { "tipo": "string", "categoria": "string", "local": "string", "data": "date", "hora": "string", "status": "string" }
   ```
-- Parâmetros:
-  ```
-  {"tipo": string, "categoria": string, "local": string, "data": date, "hora": hora, "status": string}
-  ```
-- Resposta:
+
+- Resposta - Sucesso (201):
   ```
   { "message": "Partida criada com sucesso"}
-  {
-  "id": "int",
-  "tipo": "string",
-  "categoria": "string",
-  "local": "string",
-  "data": "date",
-  "hora": "string",
-  "status": "string"
-  }
   ```
-- Códigos de erro:
+- Erro:
   ```
   404 (partida não encontrada)
   500 (falha inesperada no servidor)
   ```
 3. Atualizar Partida
- - Endpoint:
+ - Endpoint: PUT /api/partida/{id}/atualizar
+ 
+- Descrição: Atualiza os dados de uma partida existente.
+
+- Parâmetros do Corpo (body):
   ```
-  PUT /api/partida/{id}/atualizar
+  { "tipo": "string", "categoria": "string", "local": "string", "data": "date", "hora": "string", "status": "string" }
   ```
- - Parâmetros
-  ```
-  {"id": int}
-  ```
- - Resposta
+  
+- Resposta - Sucesso (200):
   ```
   { "message": "Partida atualizada com sucesso" }
-  {
-    "id": int,
-    "tipo": string,
-    "categoria": string,
-    "local": string,
-    "data": date,
-    "hora": string,
-    "status": string
-  }
   ```
- - Código de erro:
+- Erro:
   ```
   404 (Partida não encontrada)
   400 (Parâmetros inválidos)
   500 (Falha inesperada no servidor)
   ```
 4. Deletar partida
- - Endpoint:
-  ```
-  DELETE /api/partida/{id}/deletar
-  ```
- - Parâmetros:
-  ```
-  {"id": int}
-  ```
- - Resposta
+- Endpoint: DELETE /api/partida/{id}/deletar
+
+- Descrição: Remove uma partida do sistema.
+
+- Resposta
   ```
   { "message": "Partida deletada com sucesso" }
   ```
- - Código de erro:
+- Código de erro:
   ```
   404: Partida não encontrada
   500: Falha inesperada no servidor
